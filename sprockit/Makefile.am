@@ -37,6 +37,8 @@ libsprockit_la_SOURCES = \
 
 library_includedir=$(includedir)/sprockit
 
+nodist_library_include_HEADERS = spkt_config.h 
+
 nobase_library_include_HEADERS = \
   basic_string_tokenizer.h \
   debug.h \
@@ -46,7 +48,6 @@ nobase_library_include_HEADERS = \
   fileio.h \
   driver_util.h \
   clonable.h \
-  spkt_config.h \
   ser_ptr_type.h \
   metadata_bits.h \
   opaque_typedef.h \
