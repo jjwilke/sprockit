@@ -34,13 +34,17 @@ BODY="
     std::smatch matches;
     std::regex_constants::match_flag_type searchFlags = std::regex_constants::match_default;
     std::regex re(regexp, std::regex_constants::ECMAScript);
-    if (std::regex_search(std::string(text), matches, re, searchFlags)){
+    std::string textStr(text);
+    if (std::regex_search(textStr, matches, re, searchFlags)){
         if (matches.size() == 1){
+          printf(\"Found regex match!\n\");
           return 0;
         } else {
+          printf(\"No regex match!\n\");
           return 1;
         }
     } else {
+      printf(\"Invalid regex search!\n\");
       return 1;
     }
 "
@@ -55,7 +59,8 @@ Regex is required for input file proofreading, but sims will still run])]
 AC_RUN_IFELSE([AC_LANG_PROGRAM([$HEADER], [$BODY])],
 [AC_MSG_RESULT([ran C++11 regex test successfully])],
 [AC_MSG_FAILURE([C++11 detected, but could not run with regex
-This can occur with GCC versions <4.9 which provides an incomplete implentation
+This can occur with GCC versions <4.9 which provides an incomplete implementation
+If using GCC >= 4.9, be sure LD_LIBRARY_PATH is correct
 Use the flag --disable-regex to disable regex-dependent features
 Regex is required for input file proofreading, but sims will still run])]
 )
