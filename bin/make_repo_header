@@ -6,11 +6,10 @@ import sys
 
 srcdir = sys.argv[1]
 prefix = sys.argv[2]
-cwd = os.getcwd()
-builddir = os.path.abspath(cwd)
+builddir = os.path.abspath(os.getcwd())
 
 os.chdir(srcdir)
-repo = commands.getoutput("hg identify")
+repo = commands.getoutput("git rev-parse HEAD")
 
 header = """#ifndef %s_REPO_HEADER
 #define %s_REPO_HEADER "%s"

@@ -412,7 +412,7 @@ get_timestamp(const char *value, bool &errorflag, bool print_errors)
 
   val *= multiplier;
 
-  return val*1e-12; //sec to psec
+  return val*1e-12; //convert psec to sec
 }
 
 /// Get a frequency possibly suffixed with any of the identifiers
