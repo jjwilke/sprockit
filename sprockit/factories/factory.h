@@ -387,16 +387,6 @@ class factory
 {
  public:
   virtual T* build(sim_parameters* params) = 0;
-
-  template <class F, class U>
-  T* build(sim_parameters *params, const U& u){
-    F* f = dynamic_cast<F*>(build(params));
-    if (f){
-      factory_init(f, params, u);
-    }
-    return f;
-  }
-
 };
 
 template <class T, class Factory>
@@ -417,9 +407,34 @@ class template_factory : public factory<T>
 
  private:
   std::string param_name_;
-
 };
 
+template <class T>
+class factory2
+{
+ public:
+  virtual T* build(sim_parameters* params, sprockit::factory_type* ft) = 0;
+};
+
+template <class T, class Factory>
+class template_factory2 : public factory2<T>
+{
+ public:
+  template_factory2(const std::string& param_name)
+    : param_name_(param_name)
+  {
+  }
+
+  T* build(sim_parameters* params, sprockit::factory_type* ft){
+    typedef typename Factory::element_type F;
+    F* f = Factory::get_value(param_name_, params);
+    factory_init(f, params, ft);
+    return f;
+  }
+
+ private:
+  std::string param_name_;
+};
 
 template<class Parent, class Child>
 class SpktFactory_desc : public SpktDesc_base
