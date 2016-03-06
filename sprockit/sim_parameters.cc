@@ -137,6 +137,12 @@ param_assign::getBandwidth() const
   return get_bandwidth_from_str(param_.c_str(), key_.c_str()); 
 }
 
+double
+param_assign::getFrequency() const 
+{
+  return get_freq_from_str(param_.c_str(), key_.c_str()); 
+}
+
 long
 param_assign::getByteLength() const
 {
@@ -150,21 +156,45 @@ param_assign::getTime() const
 }
 
 void
-param_assign::setTime(double x, const char* units)
+param_assign::set(const char* str)
+{
+  param_ = str;
+}
+
+void
+param_assign::set(const std::string& str)
+{
+  param_ = str;
+}
+
+void
+param_assign::setValue(double x, const char* units)
 {
   param_ = sprockit::printf("%f%s", x, units);
+}
+
+void
+param_assign::setTime(double x, const char* units)
+{
+  setValue(x, units);
 }
 
 void
 param_assign::setBandwidth(double x, const char* units) 
 {
-  param_ = sprockit::printf("%f%s", x, units);
+  setValue(x, units);
+}
+
+void
+param_assign::setFrequency(double x, const char* units) 
+{
+  setValue(x, units);
 }
 
 void
 param_assign::setByteLength(long x, const char* units)
 {
-  param_ = sprockit::printf("%ld%s", x, units);
+  setValue(x, units);
 }
 
 sim_parameters::sim_parameters() :

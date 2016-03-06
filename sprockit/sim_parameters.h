@@ -42,11 +42,16 @@ class param_assign {
 
   void setByteLength(long x, const char* units);
   void setBandwidth(double x, const char* units);
+  void setFrequency(double x, const char* units);
   void setTime(double x, const char* units);
+  void setValue(double x, const char* units);
+  void set(const char* str);
+  void set(const std::string& str);
 
   long getByteLength() const;
   double getBandwidth() const;
   double getTime() const;
+  double getFrequency() const;
 
   operator int() const;
 

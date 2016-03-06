@@ -193,6 +193,10 @@ class debug_register_slot {
     debug_register_slot name##_debug_registerer(#name, &name, "" __VA_ARGS__); \
   } }
 
+#define MakeDebugSlot(name, ...) \
+  DeclareDebugSlot(name) \
+  RegisterDebugSlot(name)
+
 #ifdef SPROCKIT_DISABLE_DEBUG
 #define debug_printf(...) //eliminate completely
 #else
