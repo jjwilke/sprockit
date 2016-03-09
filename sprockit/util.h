@@ -52,6 +52,8 @@ __safe_cast__(const char* objname,
 #define known_cast(type,...) \
     safe_cast(type, __VA_ARGS__)
 
+#define interface_cast(type,obj) \
+    dynamic_cast<type*>(obj)
 
 template <class maptype, class keytype>
 const typename maptype::mapped_type&
