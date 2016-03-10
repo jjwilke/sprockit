@@ -217,6 +217,11 @@ sim_parameters::sim_parameters(const std::string& filename) :
 sim_parameters::~sim_parameters()
 {
   params_.clear();
+  std::map<std::string, sim_parameters*>::const_iterator it, end = subspaces_.end();
+  for (it=subspaces_.begin(); it != end; ++it){
+    sim_parameters* subspace = it->second;
+    delete subspace;
+  }
 }
 
 std::string
