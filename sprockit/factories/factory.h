@@ -401,7 +401,6 @@ class template_factory : public factory<T>
   T* build(sim_parameters* params){
     typedef typename Factory::element_type F;
     F* f = Factory::get_value(param_name_, params);
-    factory_init(f, params);
     return f;
   }
 
@@ -427,8 +426,7 @@ class template_factory2 : public factory2<T>
 
   T* build(sim_parameters* params, sprockit::factory_type* ft){
     typedef typename Factory::element_type F;
-    F* f = Factory::get_value(param_name_, params);
-    factory_init(f, params, ft);
+    F* f = Factory::get_value(param_name_, params, ft);
     return f;
   }
 
