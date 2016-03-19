@@ -387,6 +387,8 @@ class factory
 {
  public:
   virtual T* build(sim_parameters* params) = 0;
+
+  virtual ~factory(){}
 };
 
 template <class T, class Factory>
@@ -412,6 +414,8 @@ template <class T>
 class factory2
 {
  public:
+  virtual ~factory2(){}
+
   virtual T* build(sim_parameters* params, sprockit::factory_type* ft) = 0;
 };
 
